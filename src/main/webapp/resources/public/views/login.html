@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <div class="container">
+
+        <form ng-submit="onLogin()" name="form" class="pure-form login-form" novalidate ng-controller="LoginCtrl">
+            <fieldset class="pure-group">
+                
+                <center><img class="logo" alt="Power On" src="/resources/img/power_on.png"></center>
+                
+                <div class="form-field">
+                    <input type="text" ng-focus="focus('username')"  ng-blur="blur('username')" ng-model="vm.username"
+                           name="username" class="pure-input-1" placeholder="Identifiant" required ng-minlength="6">
+
+                    <div class="error-messages" ng-show="isMessagesVisible('username')" ng-messages="form.username.$error" ng-cloak>
+                        <div ng-message="required">L'identifiant est obligatoire</div>
+                        <div ng-message="minlength">Doit avoir au minimum 6 caractères</div>
+                    </div>
+                    
+                </div>
+                
+                <div class="last-form-field">
+                    <input type="password" ng-focus="focus('password')"  ng-blur="blur('password')" ng-model="vm.password"
+                           name="password" class="pure-input-1" placeholder="Mot de Passe" required ng-minlength="6"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                    
+                    <div class="error-messages" ng-show="isMessagesVisible('password')" ng-messages="form.password.$error" ng-cloak>
+                        <div ng-message="required">Le mot de passe est obligatoire</div>
+                        <div ng-message="minlength">Doit avoir au minimum 6 caractères</div>
+                        <div ng-message="pattern">Au moins une majuscule et un chiffre</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="pure-button pure-input-1 pure-button-primary">Se connecter</button>
+            <a class="new-user-link" href="/resources/public/new-user.html">Nouveau ?</a>
+
+        </form>
+
+    </div>  

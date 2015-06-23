@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+</head>
+
+<p class="lead">Je recherche :</p>
+
+<!--<select ng-model="genre" ng-options="genre.nom for genre in genres"></select><br> -->
+<!--  <button class="btn btn-primary btn-large" ng-model="btn_homme" disabled="disabled"> HOMME </button> <a class="btn btn-primary btn-large" ng-model="btn_femme" href="#"> FEMME </a>-->
+<div class="row-fluid">
+	<label for="homme">
+		<input ng-model="genre" autocomplete="off"
+		type="radio" ng-click="chx_genre('HOMME')" name="genre" value="HOMME"
+		id="homme"> HOMME</label>
+		 <label for="femme">
+		<input ng-model="genre"
+		autocomplete="off" type="radio" ng-click="chx_genre('FEMME')"
+		name="genre" value="FEMME" id="femme"> FEMME</label>
+</div>
+
+<hr>
+<p class="lead">Qui a pour centre d'intérets</p>
+
+<label ng-repeat="role in interets"> <input type="checkbox"
+	checklist-model="interetSel" checklist-value="role.id">
+	{{role.nom}}
+</label>
+
+<hr>
+
+<p class="text-center">
+	<a class="btn btn-large btn-success" ng-click="search()">Lancer la recherche</a>
+</p>
+
+<hr>
+
+<p class="lead">Nous avons sélectionnés les profils suivants pour
+	vous :</p>
+
+<hr>
+
+<div class="row-fluid">
+	<div class="span4" ng-repeat="geek in geeks">
+		<h2>{{geek.prenom}} {{geek.nom}}</h2>
+		<img gravatar-src="'{{geek.mail}}'" gravatar-size="100">
+
+		<p>
+			<a class="btn" ng-href="#profil/{{geek.id}}" >Voir son profil &raquo;</a>
+		</p>
+	</div>
+
+</div>
+
+<hr>
+
+<p class="text-right">
+	{{count}} geeks cherche déjà l'amour ! <a href="#">S'incrire
+		&raquo;</a>
+</p>
+
+
+<div class="invisible">
+	**** DEBUG ****<br />
+	<div ng-repeat="id in interetParam">{{id}}</div>
+
+	{{genre}}<br> *******************
+</div>
