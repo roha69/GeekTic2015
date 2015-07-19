@@ -79,6 +79,77 @@ angular.module('frontendServices', [])
             }
         }
     }])
+    .service('ProfileService', ['$http', '$q', function($http, $q) {
+        return {
+            searchProfile: function(gender, interests) {
+                var deferred = $q.defer();
+
+                $http.get('/profile/',{
+                    params: {
+                        gender: gender,
+                        interests: interests
+                    }
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        deferred.resolve(response.data);
+                    }
+                    else {
+                        deferred.reject('Error retrieving profiles');
+                    }
+                });
+
+                return deferred.promise;
+            },
+
+            deleteProfile: function(deletedProfileIds) {
+                var deferred = $q.defer();
+
+                $http({
+                    method: 'DELETE',
+                    url: '/profile',
+                    data: deletedProfileIds,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        deferred.resolve();
+                    }
+                    else {
+                        deferred.reject('Error deleting profile');
+                    }
+                });
+
+                return deferred.promise;
+            },
+
+            saveProfile: function(dirtyProfile) {
+                var deferred = $q.defer();
+
+                $http({
+                    method: 'POST',
+                    url: '/profile',
+                    data: dirtyProfile,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "text/plain, application/json"
+                    }
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        deferred.resolve();
+                    }
+                    else {
+                    deferred.reject("Error saving profile: " + response.data);
+                    }
+                });
+
+                return deferred.promise;
+            }
+        }
+    }])
     .service('UserService', ['$http','$q', function($http, $q) {
         return {
             getUserInfo: function() {
@@ -86,7 +157,7 @@ angular.module('frontendServices', [])
 
                 $http.get('/user')
                     .then(function (response) {
-                        if (response.status == 200) {
+                        if (response.status === 200) {
                             deferred.resolve(response.data);
                         }
                         else {
@@ -96,28 +167,28 @@ angular.module('frontendServices', [])
 
                 return deferred.promise;
             },
-            updateMaxCaloriesPerDay: function(maxCaloriesPerDay) {
-                var deferred = $q.defer();
-
-                $http.put('/user', maxCaloriesPerDay)
-                    .then(function (response) {
-                        if (response.status == 200) {
-                            deferred.resolve();
-                        }
-                        else {
-                            deferred.reject('Error saving max calories per day');
-                        }
-                    });
-
-                return deferred.promise;
-            },
+//            updateMaxCaloriesPerDay: function(maxCaloriesPerDay) {
+//                var deferred = $q.defer();
+//
+//                $http.put('/user', maxCaloriesPerDay)
+//                    .then(function (response) {
+//                        if (response.status === 200) {
+//                            deferred.resolve();
+//                        }
+//                        else {
+//                            deferred.reject('Error saving max calories per day');
+//                        }
+//                    });
+//
+//                return deferred.promise;
+//            },
             logout: function () {
                 $http({
                     method: 'POST',
                     url: '/logout'
                 })
                 .then(function (response) {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                     window.location.reload();
                     }
                     else {

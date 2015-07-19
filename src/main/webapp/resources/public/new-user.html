@@ -3,11 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create User Calorie Tracker</title>
+    <title>GeekTic Inscription</title>
     <link rel="stylesheet" href="/resources/bower_components/pure/pure.css">
     <link rel="stylesheet" href="/resources/bower_components/pure/grids-responsive.css">
     <link rel="stylesheet" href="/resources/public/css/pure-theme.css">
-    <link rel="stylesheet" href="/resources/public/css/calories-tracker.css">
+    <link rel="stylesheet" href="/resources/public/css/geektic.css">
 </head>
 <body class="pure-skin-theme" id="createUserApp">
 
@@ -16,7 +16,7 @@
         <a class="pure-menu-heading" href="#">
             <img class="logo" src="/resources/img/logo.png">
         </a>
-        <span class="header-element page-title">Calorie Tracker</span>
+        <span class="header-element page-title">GeekTic</span>
     </div>
 </header>
 
@@ -28,15 +28,15 @@
 
             <form name="form" ng-submit="createUser()" class="pure-form login-form" novalidate ng-controller="NewUserCtrl">
                 <fieldset class="pure-group">
-                    <legend>New User?</legend>
+                    <legend>Créer son Compte</legend>
                     <div class="form-field">
                         <input type="text" ng-focus="focus('username')" ng-blur="blur('username')" ng-model="vm.username"
-                               name="username" class="pure-input-1" placeholder="Username" required ng-minlength="6">
+                               name="username" class="pure-input-1" placeholder="Nom d'utilisateur" required ng-minlength="6">
 
                         <div class="error-messages" ng-show="isMessagesVisible('username')" ng-messages="form.username.$error"
                              ng-cloak>
-                            <div ng-message="required">The username is mandatory</div>
-                            <div ng-message="minlength">must have minimum 6 characters</div>
+                            <div ng-message="required">le nom d'utilisateur est obligatoire</div>
+                            <div ng-message="minlength">doit avoir au moins 6 caractères</div>
                         </div>
                     </div>
                     <div class="form-field">
@@ -45,40 +45,40 @@
 
                         <div class="error-messages" ng-show="isMessagesVisible('email')" ng-messages="form.email.$error"
                              ng-cloak>
-                            <div ng-message="required">The email is mandatory</div>
-                            <div ng-message="email">must be a valid email</div>
+                            <div ng-message="required">l'adresse email est obligatoire</div>
+                            <div ng-message="email">doit être un email valide</div>
                         </div>
                     </div>
                     <div class="form-field">
                         <input type="password" ng-focus="focus('password')" ng-blur="blur('password')"
-                               ng-model="vm.password" name="password" class="pure-input-1" placeholder="Password"
+                               ng-model="vm.password" name="password" class="pure-input-1" placeholder="Mot de Passe"
                                required ng-minlength="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
 
                         <div class="error-messages" ng-show="isMessagesVisible('password')" ng-messages="form.password.$error"
                              ng-cloak>
-                            <div ng-message="required">The password is mandatory</div>
-                            <div ng-message="minlength">must have minimum 6 characters</div>
-                            <div ng-message="pattern">At least one number and uppercase</div>
+                            <div ng-message="required">le mot de passe est obligatoire</div>
+                            <div ng-message="minlength">doit avoir au moins 6 caractères</div>
+                            <div ng-message="pattern">au moins une majuscule et un chiffre</div>
                         </div>
                     </div>
                     <div class="last-form-field">
                         <input type="password" ng-focus="focus('confirmPassword')" ng-blur="blur('confirmPassword')"
                                ng-model="vm.confirmPassword" name="confirmPassword" class="pure-input-1"
-                               placeholder="Confirm Password" required ng-minlength="6"
+                               placeholder="Confirmation" required ng-minlength="6"
                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" check-passwords-match>
 
                         <div class="error-messages" ng-show="isMessagesVisible('confirmPassword')"
                              ng-messages="form.confirmPassword.$error" ng-cloak>
-                            <div ng-message="required">The password is mandatory</div>
-                            <div ng-message="minlength">must have minimum 6 characters</div>
-                            <div ng-message="pattern">At least one number and uppercase</div>
-                            <div ng-message="checkPasswordsMatch">Passwords must match</div>
+                            <div ng-message="required">le mot de passe est obligatoire</div>
+                            <div ng-message="minlength">doit avoir au moins 6 caractères</div>
+                            <div ng-message="pattern">au moins une majuscule et un chiffre</div>
+                            <div ng-message="checkPasswordsMatch">mots de passes différents</div>
                         </div>
                     </div>
                 </fieldset>
 
-                <button type="submit" class="pure-button pure-input-1 pure-button-primary">Create User</button>
-                <a class="new-user-link" href="login.html">Already a user?</a>
+                <button type="submit" class="pure-button pure-input-1 pure-button-primary">Créer mon Compte</button>
+                <a class="new-user-link" href="login.html">Déjà inscrit ?</a>
 
             </form>
 

@@ -8,44 +8,36 @@ require.config({
     paths: {
         angular: '../bower_components/angular/angular',
         angularMessages: '../bower_components/angular-messages/angular-messages',
+        angularRoutes: '../bower_components/angular-route/angular-route',
         csrfInterceptor: '../bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         lodash: "../bower_components/lodash/dist/lodash",
-        jQuery: "./datetimepicker/jquery", // needed only by the date time picker
-        datetimepicker: './datetimepicker/jquery.datetimepicker',
-        editableTableWidgets: '../public/js/editable-table-widgets',
         frontendServices: 'frontend-services',
-        caloriesCounterApp: "calories-counter-app"
+        geekticApp: "geektic-app"
     },
     shim: {
-        jQuery: {
-            exports: "jQuery"
-        },
         angular: {
             exports: "angular"
         },
         csrfInterceptor: {
             deps: ['angular']
         },
-        datetimepicker: {
-            deps: ['jQuery']
-        },
         angularMessages: {
             deps: ['angular']
         },
-        editableTableWidgets: {
-            deps: ['angular', 'lodash', 'datetimepicker', 'jQuery']
+        angularRoutes: {
+            deps: ['angular']
         },
         frontendServices: {
             deps: ['angular', 'lodash', 'csrfInterceptor']
         },
-        caloriesCounterApp: {
-            deps: [ 'lodash', 'angular', 'angularMessages', 'editableTableWidgets' , 'frontendServices']
+        geekticApp: {
+            deps: [ 'lodash', 'angular', 'angularMessages', 'frontendServices']
         }
     }
 });
 
-require(['caloriesCounterApp'], function () {
+require(['geekticApp'], function () {
 
-    angular.bootstrap(document.getElementById('caloriesCounterApp'), ['caloriesCounterApp']);
+    angular.bootstrap(document.getElementById('geekticApp'), ['geekticApp']);
 
 });

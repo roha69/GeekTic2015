@@ -11,6 +11,8 @@ require.config({
         csrfInterceptor: '../../bower_components/spring-security-csrf-token-interceptor/dist/spring-security-csrf-token-interceptor.min',
         lodash: "../../bower_components/lodash/dist/lodash",
         editableTableWidgets: 'editable-table-widgets',
+        modernizr:'modernizr',
+        datetimepicker: 'angular-date-picker-polyfill',
         common: 'common',
         createUserApp: 'new-user'
     },
@@ -30,8 +32,14 @@ require.config({
         common: {
           deps: ['angular', 'csrfInterceptor', 'angularMessages','editableTableWidgets']
         },
+        modernizr: {
+            exports: "modernizr"
+        },
+//        datetimepicker: {
+//            deps: ['angular','modernizr']
+//        },
         createUserApp: {
-            deps: [ 'common']
+            deps: [ 'common'/*, 'datetimepicker'*/ ]
         }
     }
 });
