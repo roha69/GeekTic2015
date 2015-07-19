@@ -7,7 +7,7 @@ Un simple projet pour démontrer le fonctionnement d'une application construite 
 GeekTic est un site de rencontre pour les Geek. On créer son compte, remplis son profil et recherche des personnes.
 
 Le frontend est entièrement basé sur Angular, lodash et requirejs.
-Le backend est composé de  **web services JSON REST ** propulsés par  **Spring MVC  **/  **JPA ** et sécurisé avec  **Spring Security **.  La base de données est hsql pour les tests (légère et en mémoire vive) et Postgres pour la production.
+Le backend est composé de  **web services JSON REST** propulsés par  **Spring MVC**/  **JPA** et sécurisé avec  **Spring Security**.  La base de données est hsql pour les tests (légère et en mémoire vive) et Postgres pour la production.
 
 Le squelette de cette application provient de ce [blog](http://blog.jhades.org/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/).
 
