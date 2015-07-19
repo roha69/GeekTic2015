@@ -13,7 +13,7 @@ Le squelette de cette application provient de ce [blog](http://blog.jhades.org/d
 
 ##Sommaire
 
-[TOC]
+{:toc}
 
 ## Installation et démarrage
 ###<i class="icon-cog"></i> Installation des dépendances ###
