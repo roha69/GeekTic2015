@@ -1,127 +1,138 @@
-# GeekTic, A Spring MVC | AngularJs Sample App #
 
-A sample project to demonstrate how a web app can be built using a Spring MVC / AngularJs stack. The frontend is based on Angular, lodash and requirejs, and the backend is composed of JSON REST web services based on Spring MVC / JPA, secured with Spring Security. See a further description of the app on this [blog post](http://blog.jhades.org/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/).
+##GeekTic
+###A Spring MVC & AngularJs Sample App
 
-### Installation dependencies ###
+Un simple projet pour démontrer le fonctionnement d'une application construite avec le framwork  **Spring MVC ** et un client web en  **AngularJs **. 
 
-The following dependencies are necessary: 
+GeekTic est un site de rencontre pour les Geek. On créer son compte, remplis son profil et recherche des personnes.
+
+Le frontend est entièrement basé sur Angular, lodash et requirejs.
+Le backend est composé de  **web services JSON REST ** propulsés par  **Spring MVC  **/  **JPA ** et sécurisé avec  **Spring Security **.  La base de données est hsql pour les tests (légère et en mémoire vive) et Postgres pour la production.
+
+Le squelette de cette application provient de ce [blog](http://blog.jhades.org/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/).
+
+##Sommaire
+
+[TOC]
+
+## Installation et démarrage
+###<i class="icon-cog"></i> Installation des dépendances ###
+
+L'application dépend de : 
 
  - Java 8
  - Node 0.10
  - bower
  - maven 3
 
-### Installing frontend dependencies ###
+### Installer les dépendances du frontend ###
 
-After cloning the repository, the following command installs the Javascript dependencies:
+Après avoir cloné ce répertoire, les commandes suivantes installent les dépendances JavaScript :
 
     bower install
 
-### Building and starting the server ###
+### <i class="icon-cog"></i>Build et Start le serveur ###
 
-To build the backend and start the server, run the following command on the root folder of the repository:
+Pour build le backend et démarrer le serveur, il faut lancer ses commandes dans le répertoire racine de l’application :
 
-With hsqlDB Database (IN MEMORY) :
+Avec la base de données [hsqlDB](http://hsqldb.org/)  (IN MEMORY) :
 
     mvn clean install tomcat7:run-war -Dspring.profiles.active=test
  
- With Postgres Database :
+ Avec le base de données <i class="icon-hdd"></i> [Postgres](http://www.postgresql.org/) :
  
     mvn clean install tomcat7:run-war -Dspring.profiles.active=develop
 
-The spring test profile will activate an in-memory database. After the server starts, the application is accessible at the following URL:
+Le profil test avec la base de données en mémoire. Après le démarrage du serveur, l'application est accessible à l'adresse URL suivante :
 
     http://localhost:8080/
 
-To see a user with existing data (16 meals, 8 days from 1st of January 2015 to the 8th), login with the following credentials:
+Pour avoir un utilisateur avec des données, identifiez vous avec l'utilisateur suivant :
 
-    username: test123 / password: Password2
+    identifiant: test123 / Mot de passe: Password2
 
-### Frontend Overview ###
+### Lancer le projet en HTTPS uniquement ###
 
-The sample project is a web application with an AngularJs-based frontend and a Spring/Hibernate based backend. The application is responsive, as it adapts to different screen sizes.
-
-On the frontend, these libraries where used (besides Angular):  [Yahoo PureCss](http://http://purecss.io/) (pure CSS baseline)  and [lodash](https://lodash.com/) for functional data manipulation. The module system [require.js](http://requirejs.org/) was used to load frontend dependencies. The dependencies where  obtained via [bower](http://bower.io/).
-
-The angular module [angular-messages](https://egghead.io/lessons/angularjs-introduction-to-ng-messages-for-angularjs) was used for frontend form validation, and this [jQuery plugin](http://plugins.jquery.com/datetimepicker/) was used as the datetimepicker component. 
-
-### Backend Overview ###
-
-The backend is based on Java 8, Spring 4, JPA 2/ Hibernate 4. The Spring configuration is based on Java. The main Spring modules used where Spring MVC and Spring Security. The backend was built using the DDD approach, which includes a domain model, services, repositories and DTOs for frontend/backend data transfer. 
-
-The REST web services are based on Spring MVC and JSON. The unit tests are made with spring test and the REST API functional tests where made using [Spring test MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/testing.html#spring-mvc-test-framework).
-
-#### Backend Security ####
-
-The Spring Security module was used to secure the REST backend (these [guidelines](https://www.owasp.org/index.php/REST_Security_Cheat_Sheet) are in general applied). The application can be made to run in HTTPS-only mode via a server parameter, meaning no pages will be served if the user tries to access it via HTTP.
-
-The Spring Security Form Login mode was used, with fallback to HTTP-Basic Authentication for non-browser based HTTP clients. Protection is in-place against CSRF ([cross-site request forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29)). 
-
-Frontend validations are for user convenience only, and where also made on the backend. The use of Angular gives good protection against common problems like [cross-site scripting or HTML injection](https://docs.angularjs.org/misc/faq). The queries on the backend are made using either named queries or the criteria API, which gives good protection against SQL injection.
-
-The password policy is of at least 6 characters with minimum one lower case, one upper case and one numeric. The passwords are not stored in the database in plain text but in a digested form, using the Spring Security [Bcrypt](http://docs.spring.io/autorepo/docs/spring-security/3.2.0.RELEASE/apidocs/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html) password encoder (transparently includes a salt).
-
-#### REST API ####
-
-The REST API of the backend is composed of 3 services:
-
-##### Authentication Service #####
-
-Url           |Verb          | Description
---------------|------------- | -------------
-/authenticate |POST          | authenticates the user
-/logout |POST          | ends the current session
-
-
-##### User Service #####
-
-Url           |Verb          | Description
---------------|------------- | -------------
-/user         |GET          | retrieves info for the currently logged-in user (number of calories of today, etc.) 
-/user| PUT| Used to save the user max calories per day
-/user|POST| creates a new user
-
-
-
-##### Meal Service #####
-
-Url           |Verb          | Description
---------------|------------- | -------------
-/meal         |GET          | searches meals for the current user by date/time
-/meal|POST|saves a modified set of meals, might included new ones
-/meal|DELETE| deletes a set of meals
-
-
-
-
-### Testing code coverage ###
-
-This snapshot shows the test code coverage for the app package:
-
-![alt Calories Tracker test Code Coverage](http://d2huq83j2o5dyd.cloudfront.net/CodeCoverage.png)
-
-## Installation instructions
-
-Clone this repository, install nodejs and bower and on the root of the repository run this command:
-
-    bower install
-    
-Then run one of the maven commands bellow. 
-
-### How to run the project against a non-in-memory database ###
-
-This command starts the application with a local postgresql database:
-
-    mvn clean install tomcat7:run-war -Dspring.profiles.active=development
-
-### How to run the project in HTTPS-only mode ###
-
-The application can be started in HTTPS only mode by using the flag httpsOnly=true. This works in both modes, this is an example of how to start the application in test mode and HTTPS only:
+L'application peut démarrer en HTTPS uniquement en ajoutant le paramètre httpsOnly=true. Voici un exemple de commande pour lancer en HTTPS :
 
     mvn clean install tomcat7:run-war -Dspring.profiles.active=test -DhttpsOnly=true
 
-The project can be accessed via this URL:
+Le projet peut donc être accéder par l'adresse URL :
 
     https://localhost:8443/
     
-A warning message is displayed because the test certificate is not accepted by the browser, by accepting the certificate the login page is then displayed.
+Un message d'avertissement peut être afficher car le navigateur n'accepte pas le certificat, il suffit de l'accepter et la page d'authentification s'ouvre.
+
+
+##L'application 
+### Aperçu du Frontend ###
+
+Le projet est un exemple d'application web entièrement basé sur AngularJs pour le frontend et un serveur Spring/Hibernate pour le backend. L'application est responsive, elle adopte différentes tailles d'écran.
+
+Pour le frontend, Les librairies suivantes sont utilisée :  [Yahoo PureCss](http://http://purecss.io/) (pure CSS baseline)  et [lodash](https://lodash.com/) pour la manipulation de donnée. Le module système  [require.js](http://requirejs.org/) est utilisé pour charger les dépendances du frontend. Les librairies sont obtenues via [bower](http://bower.io/).
+
+Le module [angular-messages](https://egghead.io/lessons/angularjs-introduction-to-ng-messages-for-angularjs) est utilisé pour la validation des formulaires.
+
+### Aperçu du Backend ###
+
+Le backend est développé en Java 8 avec le framwork Spring 4, JPA 2 et Hibernate 4. La configuration Spring est en Java (le xml étant trop verbeux et illisible). les principaux modules Spring modules utilisés sont Spring MVC et Spring Security. Le backend a été construit suivant l'approche  [Domain-driven design](https://fr.wikipedia.org/wiki/Conception_pilot%C3%A9e_par_le_domaine), lequel inclus un domaine modèle (entités), services, répertoires (liste d'entités) et DTO (Data Transfer Object) pour le transfère frontend/backend en JSON. 
+
+Les web services REST sont basés sur Spring MVC et JSON. Les tests unitaires sont fait avec Spring Test et les tests fonctionnels de l'API REST sont fait avec [Spring test MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/testing.html#spring-mvc-test-framework).
+
+#### Sécurisation du Backend####
+
+Le module Spring Securitya été utilisé pour la sécurisation des services REST du backend (ses [guidelines](https://www.owasp.org/index.php/REST_Security_Cheat_Sheet) ont été appliquées). L'application peut tournée en mode HTTPS-only via un paramètre du serveur, ce qui signifie qu'aucune page ne sera délivrée aux utilisateurs en HTTP.
+
+Le formulaire d'indentification de Spring Security a été utilisé, avec un fallback en HTTP-Basic Authentication pour les clients non basés en HTTP. Il y a une protection en place contre le CSRF ([cross-site request forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29)). 
+
+Les validations Frontend du coté utilisateurs sont seulement à titre de signalement, car les vérification sont également faites niveau backend. L'utilisation d'Angular donne une bonne protection contre les problèmes récurrents comme [cross-site scripting ou les injections HTML ](https://docs.angularjs.org/misc/faq). Les requêtes du backend sont réalisées par des requêtes nommées ou par l'API criteria, laquelle offre de bonnes protections contre les injections SQL.
+
+La réglementation du mot de passe est d'être au moins de 6 caractères avec au minimum une majuscule et un chiffre. Les mots de passe ne sont pas stockés directement en base mais en cryptés grâce à l'utilisation de Spring Security [Bcrypt](http://docs.spring.io/autorepo/docs/spring-security/3.2.0.RELEASE/apidocs/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html) password encoder.
+
+#### REST API ####
+
+L'API REST du backend est composée de 3 services:
+
+##### Service d'Authentication #####
+
+Url           |Verb          | Description
+--------------|------------- | -------------
+/authenticate |POST          | authentifie l'utilisateur
+/logout       |POST          | termine la session
+
+
+##### Service d'Utilisateur#####
+
+Url           |Verb          | Description
+--------------|------------- | -------------
+/user         |GET           | retrouve les infos de l'utilisateur
+/user         |PUT           | sauvegarde les infos de l'utilisateur
+/user         |POST          | créé un nouveau utilisateur
+
+
+
+##### Service Profile#####
+
+Url           		|Verb          | Description
+--------------	|------------- | -------------
+/profile/id/{id}	|GET          | retrouve le profile par son id
+/profile/count  |GET|retourne le nombre de tous les utilisateurs ayant un profil (exclus donc les administrateurs et modérateurs)
+/profile/gender/{gender}/interests/{interests}              |GET| retrouve les profils correspondants au genre et aux intérêts passés
+
+##### Service Interest#####
+
+Url           		|Verb          | Description
+--------------	|------------- | -------------
+/interet|GET          | retourne la liste des intérêts disponibles
+
+
+
+
+### Quelques images de l'application ###
+
+Cette image montre le design de l'application
+
+![alt GeekTic Main Page Coverage](http://i.imgur.com/XQC5D31.png)
+<i>page d'identification
+
+
