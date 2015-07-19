@@ -11,10 +11,6 @@ Le backend est composé de  **web services JSON REST** propulsés par  **Spring 
 
 Le squelette de cette application provient de ce [blog](http://blog.jhades.org/developing-a-modern-java-8-web-app-with-spring-mvc-and-angularjs/).
 
-##Sommaire
-
-{:toc}
-
 ## Installation et démarrage
 ###<i class="icon-cog"></i> Installation des dépendances ###
 
