@@ -132,3 +132,6 @@ Cette image montre le design de l'application
 <i>page d'identification
 
 
+
+![alt GeekTic Main Page Coverage](http://i.imgur.com/8xEtPPd.png)
+<i>page principale
