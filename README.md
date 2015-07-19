@@ -2,7 +2,7 @@
 ##GeekTic
 ###A Spring MVC & AngularJs Sample App
 
-Un simple projet pour démontrer le fonctionnement d'une application construite avec le framwork  **Spring MVC ** et un client web en  **AngularJs **. 
+Un simple projet pour démontrer le fonctionnement d'une application construite avec le framwork  **Spring MVC** et un client web en  **AngularJs**. 
 
 GeekTic est un site de rencontre pour les Geek. On créer son compte, remplis son profil et recherche des personnes.
 
